@@ -1,0 +1,35 @@
+body {
+	padding-top : 98px;
+}
+
+.navbar-brand {
+	padding : 10px 15px;
+}
+
+.navbar-text {
+	margin-right : 0;
+	font-size    : 1.4em;
+}
+
+.perf-test .panel-body--blue {
+	background-color : #eef9fc;
+}
+
+.perf-test .form-horizontal .form-group {
+	background-color : #eef9fc !important;
+	margin-bottom    : 0 !important;
+	padding: .3em;
+}
+
+.perf-test .form-horizontal {
+	background-color : #eef9fc;
+	padding-bottom   : 1em;
+}
+
+.perf-test .form-horizontal .row {
+	margin : 0 !important;
+}
+
+.perf-test .form-horizontal .control-label.text-left {
+	text-align : left !important;
+}

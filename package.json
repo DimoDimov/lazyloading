@@ -1,0 +1,32 @@
+{
+	"name": "wsd-tech-test-js-performance",
+	"version": "1.0.0",
+	"description": "Requires native ES6 support (Node v6.5)",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node ./index.js"
+	},
+	"engines": {
+		"node": ">=6.5"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wallstreetdocs/wsd-tech-test-js-performance.git"
+	},
+	"author": "Barry Jones <barry@onalldevices.com> (https://uk.linkedin.com/in/thefootonline)",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/wallstreetdocs/wsd-tech-test-js-performance/issues"
+	},
+	"homepage": "https://github.com/wallstreetdocs/wsd-tech-test-js-performance#readme",
+	"dependencies": {
+		"body-parser": "^1.15.2",
+		"express": "^4.14.0",
+		"express-handlebars": "^3.0.0",
+		"express-useragent": "^1.0.4",
+		"lodash": "^4.16.2",
+		"moment": "^2.15.1",
+		"node-env-file": "^0.1.8"
+	}
+}

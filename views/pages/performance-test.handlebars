@@ -1,0 +1,102 @@
+{{{{rawHelper}}}}
+<section class="row perf-test" ng-controller="bigFormController as BigForm">
+	<div class="col-sm-12">
+
+		<section class="panel panel-primary">
+
+			<div class="panel-heading">
+				<h3 class="panel-title">Big Form Test</h3>
+			</div>
+
+			<form name="VariantForm" class="form-horizontal">
+				<div class="panel-body panel-body--blue">
+
+					<!-- Type changer -->
+					<div class="form-group">
+						<label for="pc_type" class="col-sm-4 control-label">Variant: </label>
+						<div class="col-sm-8">
+							<select class="form-control" id="pc_variant" name="variant"
+							        ng-model="BigForm.variant"
+							        ng-change="BigForm.changeVariant()"
+							        ng-options="variant.id as variant.name for variant in BigForm.variants track by variant.id"
+							>
+							</select>
+						</div>
+					</div>
+
+				</div>
+			</form>
+
+			<table ng-if="BigForm.variant" class="table table-condensed table-bordered">
+				<tbody>
+					<tr>
+						<th class="text-right" width="25%">Visible Fields</th>
+						<td class="text-left">
+							<span class="label label-info">{{ BigForm.visible_fields }}</span>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-right" width="25%">Last Dependency Operation</th>
+						<td class="text-left">
+							<span class="label label-info">{{ BigForm.lastOperation.dependency.display }}</span>
+						</td>
+					</tr>
+					<tr>
+						<th class="text-right" width="25%">Last Variant Operation</th>
+						<td class="text-left">
+							<span class="label label-info">{{ BigForm.lastOperation.variant.display }}</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- Our big dynamic form -->
+			<form ng-if="BigForm.variant" name="BigBoyForm" class="form-horizontal">
+				<div class="panel-body panel-body--blue">
+					<div class="row">
+
+						<!-- Columns -->
+						<div class="col-sm-4" ng-repeat="section_idx in [0, 1, 2]">
+							<fieldset
+									class="form-group"
+									ng-repeat="Field in BigForm.Model.sections[ section_idx ]"
+							        ng-show="Field.variants.indexOf( BigForm.variant ) > -1 && !!Field.visible"
+							        >
+
+								<label for="pc_{{ Field.name }}" class="control-label">
+									{{ Field.label | titlecase }}
+								</label>
+
+								<input
+										ng-if="Field.type !== 'list'"
+										type="{{ Field.type }}"
+										class="form-control"
+										id="pc_{{ Field.name }}"
+										name="{{ Field.name }}"
+										placeholder="{{ Field.label | titlecase}}"
+								        ng-model="Field.value"
+								/>
+
+								<select ng-if="Field.type === 'list'"
+										class="form-control"
+										id="pc_{{ Field.name }}"
+										name="{{ Field.name }}"
+										ng-change="BigForm.updateDependencies()"
+								        ng-model="Field.value"
+								        ng-options="item.id as item.name for item in Field.items track by item.id"
+								>
+								</select>
+
+							</fieldset>
+
+						</div>
+
+					</div>
+				</div>
+			</form>
+
+		</section>
+
+	</div>
+</section>
+{{{{/rawHelper}}}}

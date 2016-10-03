@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6" lang="{{lang}}"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="{{lang}}"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="{{lang}}"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="{{lang}}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="" lang="{{lang}}"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="PRIIP Cloud">
+		<base href="/">
+
+		<title>{{page_name}}</title>
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		<script src="js/html5.min.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+
+		<!-- Site styles -->
+		<link href="css/bootstrap-pc.min.css" rel="stylesheet" media="screen">
+		<link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+		<link href="css/main.css" rel="stylesheet" media="screen">
+
+	</head>
+	<body ng-app="perfTest">
+
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">
+						<img src="img/priip-logo.png"
+						     width="300"
+						     class="img-responsive"
+						     alt="PRIIP Cloud Logo" />
+					</a>
+				</div>
+				<p class="navbar-text navbar-right hidden-xs">{{{page_title}}}</p>
+			</div>
+		</nav>
+
+		<article class="container">
+
+			{{{body}}}
+
+		</article>
+
+		<!-- App footer section - full width -->
+		<footer class="container-fluid app-footer">
+			<div class="row">
+				<div class="col-xs-12">
+
+					<!-- Section content - fixed width -->
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 text-left">
+								<ul class="list-inline">
+									<li>
+										<small>&copy;2015 PRIIP Cloud&trade; Ltd. – All Rights Reserved</small>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/lodash.min.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-sanitize.min.js"></script>
+		<script src="js/ui-bootstrap-tpls-0.13.4.min.js"></script>
+		<script src="js/bluebird.min.js"></script>
+		<script src="js/chance.min.js"></script>
+
+		<script src="js/app/performance-test.js"></script>
+		<script src="js/app/services/big-form-model.js"></script>
+		<script src="js/app/controllers/big-form.js"></script>
+
+	</body>
+</html>
