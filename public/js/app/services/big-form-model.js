@@ -136,9 +136,9 @@ angular.module('perfTest')
                     });
 
                     Model.keys = [
-                        { 0: Object.keys(Model.sections[0]) },
-                        { 1: Object.keys(Model.sections[1]) },
-                        { 2: Object.keys(Model.sections[2]) }
+                        Object.keys(Model.sections[0]),
+                        Object.keys(Model.sections[1]),
+                        Object.keys(Model.sections[2])
                     ];
 
                     return resolve(Model);

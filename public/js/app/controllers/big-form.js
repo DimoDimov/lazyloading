@@ -168,38 +168,42 @@ angular.module('perfTest').controller('bigFormController', [
             return {
                 restrict: 'A',
                 link: function (scope, element, attrs) {
-                    var to = scope[attrs.scrollLoadTo]; //$scope.loadedSections
-                    var from = scope[attrs.scrollLoadFrom]; //$scope.sections
-
                     $window = angular.element(window);
                     $window.bind('scroll', scrollHandler.bind(scope));
 
                     function scrollHandler (event) {
+
+                        if (!bigFormModelService.Model) {
+                            return;
+                        }
+
                         var scrollPos = document.body.scrollTop + document.documentElement.clientHeight;
                         var elemBottom = element[0].offsetTop + element.height();
                         if (scrollPos >= elemBottom) { //scrolled to bottom of scrollLoad element
                             $window.unbind(event); //this listener is no longer needed.
-                            console.log('KUR');
-                            //console.log(bigFormModelService);
 
                             var currSection;
                             var currRenderedSection;
-                            var currKeys;
+                            var currKey;
+                            var currRendSecLength;
+                            var currSecLength;
                             var maxLength = -1;
-                            var step = 20;
+                            var step = 50;
 
                             _.each(bigFormModelService.Model.keys, function (key, i){
-                                console.log(i);
 
                                 currSection = bigFormModelService.Model.sections[i];
                                 currRenderedSection = bigFormModelService.Model.renderedSections[i];
-                                currKeys = bigFormModelService.Model.keys[i];
+                                currKey = bigFormModelService.Model.keys[i];
 
-                                if (currSection.length > currRenderedSection.length) {
-                                    maxLength = currRenderedSection.length + step > currSection.length ? currSection.length : currRenderedSection.length + step;
+                                currRendSecLength = Object.keys(currRenderedSection).length;
+                                currSecLength = Object.keys(currSection).length;
 
-                                    for (var j = currRenderedSection.length; j < maxLength; j++) {
+                                if (currSecLength > currRendSecLength) {
+                                    maxLength = currRendSecLength + step > currSecLength ? currSecLength : currRendSecLength + step;
 
+                                    for (var j = currRendSecLength; j < maxLength; j++) {
+                                        currRenderedSection[currKey[j]] = currSection[currKey[j]];
 
                                     }
                                 }
