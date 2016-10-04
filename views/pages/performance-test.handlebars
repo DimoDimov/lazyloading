@@ -56,7 +56,10 @@
 					<div class="row">
 
 						<!-- Columns -->
-						<div class="col-sm-4" ng-repeat="section_idx in [0, 1, 2]">
+						<div class="col-sm-4" ng-repeat="section_idx in [0, 1, 2]"
+                 scroll-load
+                 scroll-load-from="BigForm.Model.sections[ section_idx ]"
+                 scroll-load-to="loadedSections">
 							<fieldset
 									class="form-group"
 									ng-repeat="Field in BigForm.Model.sections[ section_idx ]"
