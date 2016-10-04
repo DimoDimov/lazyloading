@@ -139,7 +139,37 @@ angular.module('perfTest').controller('bigFormController', [
                         console.log('Form Model: ', Model);
 
                         $scope.$apply(function () {
+
                             bigFormModelService.Model = Model;
+
+                            //------add initial data -------
+                            var currSection;
+                            var currRenderedSection;
+                            var currKey;
+                            var currRendSecLength;
+                            var currSecLength;
+                            var maxLength = -1;
+                            var step = 50;
+
+                            _.each(bigFormModelService.Model.keys, function (key, i){
+
+                                currSection = bigFormModelService.Model.sections[i];
+                                currRenderedSection = bigFormModelService.Model.renderedSections[i];
+                                currKey = bigFormModelService.Model.keys[i];
+
+                                currRendSecLength = Object.keys(currRenderedSection).length;
+                                currSecLength = Object.keys(currSection).length;
+
+                                if (currSecLength > currRendSecLength) {
+                                    maxLength = currRendSecLength + step > currSecLength ? currSecLength : currRendSecLength + step;
+
+                                    for (var j = currRendSecLength; j < maxLength; j++) {
+                                        currRenderedSection[currKey[j]] = currSection[currKey[j]];
+
+                                    }
+                                }
+                            });
+
                             self.Model = Model;
                             self.updateVisibleFieldCount();
                             console.log('[INIT] Big Form Model loaded.');
@@ -207,6 +237,7 @@ angular.module('perfTest').controller('bigFormController', [
 
                                     }
                                 }
+                                console.log(bigFormModelService.Model);
                             });
                             $timeout(function () {
                                 $window.bind('scroll', scrollHandler);
