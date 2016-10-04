@@ -183,7 +183,7 @@ angular.module('perfTest').controller('bigFormController', [
                             console.log('great success2');
                             $timeout(function () {
                                 $window.bind('scroll', scrollHandler);
-                            }, 40);
+                            }, 400);
                         }
                     }
                 }
