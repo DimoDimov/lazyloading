@@ -139,6 +139,7 @@ angular.module('perfTest').controller('bigFormController', [
                         console.log('Form Model: ', Model);
 
                         $scope.$apply(function () {
+                            bigFormModelService.Model = Model;
                             self.Model = Model;
                             self.updateVisibleFieldCount();
                             console.log('[INIT] Big Form Model loaded.');
@@ -162,25 +163,47 @@ angular.module('perfTest').controller('bigFormController', [
         }
     ])
     .directive('scrollLoad', [
-        '$compile', '$window', '$timeout',
-        function ($compile, $window, $timeout) {
+        '$compile', '$window', '$timeout', 'bigFormModelService',
+        function ($compile, $window, $timeout, bigFormModelService) {
             return {
                 restrict: 'A',
                 link: function (scope, element, attrs) {
                     var to = scope[attrs.scrollLoadTo]; //$scope.loadedSections
                     var from = scope[attrs.scrollLoadFrom]; //$scope.sections
-                    console.log(attrs);
-                    console.log(from);
 
                     $window = angular.element(window);
-                    $window.bind('scroll', scrollHandler);
+                    $window.bind('scroll', scrollHandler.bind(scope));
 
                     function scrollHandler (event) {
                         var scrollPos = document.body.scrollTop + document.documentElement.clientHeight;
                         var elemBottom = element[0].offsetTop + element.height();
                         if (scrollPos >= elemBottom) { //scrolled to bottom of scrollLoad element
                             $window.unbind(event); //this listener is no longer needed.
-                            console.log('great success2');
+                            console.log('KUR');
+                            //console.log(bigFormModelService);
+
+                            var currSection;
+                            var currRenderedSection;
+                            var currKeys;
+                            var maxLength = -1;
+                            var step = 20;
+
+                            _.each(bigFormModelService.Model.keys, function (key, i){
+                                console.log(i);
+
+                                currSection = bigFormModelService.Model.sections[i];
+                                currRenderedSection = bigFormModelService.Model.renderedSections[i];
+                                currKeys = bigFormModelService.Model.keys[i];
+
+                                if (currSection.length > currRenderedSection.length) {
+                                    maxLength = currRenderedSection.length + step > currSection.length ? currSection.length : currRenderedSection.length + step;
+
+                                    for (var j = currRenderedSection.length; j < maxLength; j++) {
+
+
+                                    }
+                                }
+                            });
                             $timeout(function () {
                                 $window.bind('scroll', scrollHandler);
                             }, 400);
